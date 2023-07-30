@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:size=12:antialias=true:autohint=true";
+static char *font = "FiraCode:style=regular:size=12:antialias=true:autohints=true";
 static int borderpx = 2;
 
 /*
@@ -120,16 +120,16 @@ static const ColorScheme schemes[] = {
 	  "#7aa6da", "#c397d8", "#70c0b1", "#eaeaea",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// One Half dark
-	{{"#282c34", "#e06c75", "#98c379", "#e5c07b",
-	  "#61afef", "#c678dd", "#56b6c2", "#dcdfe4",
-	  "#282c34", "#e06c75", "#98c379", "#e5c07b",
-	  "#61afef", "#c678dd", "#56b6c2", "#dcdfe4",
+	// Ayu dark
+	{{"#0f1419", "#f07178", "#b8cc52", "#f29718",
+	  "#36a3d9", "#ffee99", "#95e6cb", "#e6e1cf",
+	  "#3e4b59", "#ff3333", "#b8cc52", "#f29718",
+	  "#95e6cb", "#5c6773", "#95e6cb", "#5c6773",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
 	// One Half light
 	{{"#fafafa", "#e45649", "#50a14f", "#c18401",
-      "#0184bc", "#a626a4", "#0997b3", "#383a42",
+	  "#0184bc", "#a626a4", "#0997b3", "#383a42",
 	  "#fafafa", "#e45649", "#50a14f", "#c18401",
 	  "#0184bc", "#a626a4", "#0997b3", "#383a42",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
@@ -161,10 +161,11 @@ static const ColorScheme schemes[] = {
 	  "#928374", "#9d0006", "#79740e", "#b57614",
 	  "#076678", "#8f3f71", "#427b58", "#3c3836",
 	  [256]="#3c3836", "#555555"}, 15, 0, 256, 257},
+
 };
 
 static const char * const * colorname;
-int colorscheme = 0;
+int colorscheme = 2;
 static const int darkmode = 2;
 static const int lightmode = 3;
 
