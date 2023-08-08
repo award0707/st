@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "FiraCode:style=regular:size=12:antialias=true:autohints=true";
+static char *font = "FiraCode:size=12:antialias=true:autohints=true";
 static int borderpx = 2;
 
 /*
@@ -120,11 +120,11 @@ static const ColorScheme schemes[] = {
 	  "#7aa6da", "#c397d8", "#70c0b1", "#eaeaea",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// Ayu dark
-	{{"#0f1419", "#f07178", "#b8cc52", "#f29718",
-	  "#36a3d9", "#ffee99", "#95e6cb", "#e6e1cf",
-	  "#3e4b59", "#ff3333", "#b8cc52", "#f29718",
-	  "#95e6cb", "#5c6773", "#95e6cb", "#5c6773",
+	// One Half dark
+	{{"#0f1419", "#e06c75", "#98c379", "#e5c07b",
+	  "#61afef", "#c678dd", "#56b6c2", "#dcdfe4",
+	  "#282c34", "#e06c75", "#98c379", "#e5c07b",
+	  "#61afef", "#c678dd", "#56b6c2", "#dcdfe4",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
 	// One Half light
@@ -132,7 +132,7 @@ static const ColorScheme schemes[] = {
 	  "#0184bc", "#a626a4", "#0997b3", "#383a42",
 	  "#fafafa", "#e45649", "#50a14f", "#c18401",
 	  "#0184bc", "#a626a4", "#0997b3", "#383a42",
-	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
+	  [256]="#555555", "#cccccc"}, 7, 0, 256, 257},
 
 	// Solarized dark
 	{{"#073642", "#dc322f", "#859900", "#b58900",
@@ -165,7 +165,10 @@ static const ColorScheme schemes[] = {
 };
 
 static const char * const * colorname;
-int colorscheme = 2;
+int colorscheme = 0;
+static const int autotimetheme = 1; /* select theme based on hour of day */
+static const int daystart = 7;      /* set first hour of day & night */
+static const int nightstart = 18;
 static const int darkmode = 2;
 static const int lightmode = 3;
 
@@ -218,9 +221,13 @@ static uint forcemousemod = ShiftMask;
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
+#define MODKEY Mod1Mask
+#define TERMMOD (ControlMask|ShiftMask)
 const unsigned int mousescrollincrement = 2;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
+	{ ControlMask,          Button4, zoom,           {.f = +1} },
+	{ ControlMask,          Button5, zoom,           {.f = -1} },
 	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = mousescrollincrement},		0, /* !alt */ -1 },
 	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = mousescrollincrement},		0, /* !alt */ -1 },
 	{ XK_ANY_MOD,           Button3, selpaste,       {.i = 0},      1 },
@@ -231,8 +238,6 @@ static MouseShortcut mshortcuts[] = {
 };
 
 /* Internal keyboard shortcuts. */
-#define MODKEY Mod1Mask
-#define TERMMOD (ControlMask|ShiftMask)
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
@@ -248,6 +253,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ XK_NO_MOD,            XK_F11,         fullscreen,     {.i =  0} },
+	{ MODKEY,               XK_Return,      fullscreen,     {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
 	{ MODKEY,               XK_1,           selectscheme,   {.i =  0} },
 	{ MODKEY,               XK_2,           selectscheme,   {.i =  1} },

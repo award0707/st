@@ -97,6 +97,7 @@ typedef struct {
 	Drawable buf;
 	GlyphFontSpec *specbuf; /* font spec buffer used for rendering */
 	Atom xembed, wmdeletewin, netwmname, netwmiconname, netwmpid;
+	Atom netwmstate, netwmfullscreen;
 	struct {
 		XIM xim;
 		XIC xic;
@@ -189,7 +190,9 @@ static void mousereport(XEvent *);
 static char *kmap(KeySym, uint);
 static int match(uint, uint);
 static void updatescheme(void);
-
+static void setdarkmode(int);
+static void setlightmode(int);
+static void setthemebytime(void);
 static void run(void);
 static void usage(void);
 
@@ -765,6 +768,24 @@ xresize(int col, int row)
 	xw.specbuf = xrealloc(xw.specbuf, col * sizeof(GlyphFontSpec));
 }
 
+void
+fullscreen(const Arg *arg)
+{
+	XEvent ev;
+
+	memset(&ev, 0, sizeof(ev));
+	
+	ev.xclient.type = ClientMessage;
+	ev.xclient.message_type = xw.netwmstate;
+	ev.xclient.display = xw.dpy;
+	ev.xclient.window = xw.win;
+	ev.xclient.format = 32;
+	ev.xclient.data.l[0] = 2; /* _NET_WM_STATE_TOGGLE */
+	ev.xclient.data.l[1] = xw.netwmfullscreen;
+
+	XSendEvent(xw.dpy, DefaultRootWindow(xw.dpy), False, SubstructureNotifyMask|SubstructureRedirectMask, &ev);
+}
+
 ushort
 sixd_to_16bit(int x)
 {
@@ -1228,6 +1249,9 @@ xinit(int cols, int rows)
 	xw.netwmpid = XInternAtom(xw.dpy, "_NET_WM_PID", False);
 	XChangeProperty(xw.dpy, xw.win, xw.netwmpid, XA_CARDINAL, 32,
 			PropModeReplace, (uchar *)&thispid, 1);
+
+	xw.netwmstate = XInternAtom(xw.dpy, "_NET_WM_STATE", False);
+	xw.netwmfullscreen = XInternAtom(xw.dpy, "_NET_WM_STATE_FULLSCREEN", False);
 
 	win.mode = MODE_NUMLOCK;
 	resettitle();
@@ -2073,26 +2097,51 @@ updatescheme(void)
 	redraw();
 }
 
+//void
+//setdarkmode(int sig)
+//{
+//	colorscheme = darkmode;
+//	updatescheme();
+//	/* re-render if visible (is this needed?) */
+//	/* ttywrite("\033[O", 3, 1); */
+//	signal(SIGUSR1, setdarkmode);
+//}
+//
+//void
+//setlightmode(int sig)
+//{
+//	colorscheme = lightmode;
+//	updatescheme();
+//	/* re-render if visible (is this needed?) */
+//	/* ttywrite("\033[O", 3, 1); */
+//	signal(SIGUSR2, setlightmode);
+//}
+
 void
-setdarkmode(int sig)
+setschemebytime()
 {
-	colorscheme = darkmode;
-	updatescheme();
-	/* ttywrite("\033[O", 3, 1); *//* re-render if visible */
-	signal(SIGUSR1, setdarkmode);
+	time_t now = time(NULL);
+	struct tm *tm_struct = localtime(&now);
+	int hour = tm_struct->tm_hour;
+
+	colorscheme = (hour >= daystart && hour < nightstart) ?
+		lightmode : darkmode;
 }
 
 void
-setlightmode(int sig)
+setscheme(int sig, siginfo_t *si, void *c)
 {
-	colorscheme = lightmode;
+	int sch = si->si_int;
+	if (sch >= 0 && sch < LEN(schemes))
+		colorscheme = sch;
 	updatescheme();
-	signal(SIGUSR2, setlightmode);
 }
 
 int
 main(int argc, char *argv[])
 {
+	struct sigaction s;
+
 	xw.l = xw.t = 0;
 	xw.isfixed = False;
 	xsetcursor(cursorshape);
@@ -2142,6 +2191,8 @@ main(int argc, char *argv[])
 	} ARGEND;
 
 run:
+	if (autotimetheme) setschemebytime();
+			
 	colorname = schemes[colorscheme].colors;
 	defaultbg = schemes[colorscheme].bg;
 	defaultfg = schemes[colorscheme].fg;
@@ -2156,8 +2207,13 @@ run:
 
 	setlocale(LC_CTYPE, "");
 	XSetLocaleModifiers("");
-	signal(SIGUSR1, setdarkmode);
-	signal(SIGUSR2, setlightmode);
+
+	s.sa_sigaction = &setscheme;
+	s.sa_flags = SA_SIGINFO;
+	sigfillset(&s.sa_mask);
+	sigaction(SIGUSR1, &s, NULL);
+//	signal(SIGUSR1, setdarkmode);
+//	signal(SIGUSR2, setlightmode);
 	cols = MAX(cols, 1);
 	rows = MAX(rows, 1);
 	tnew(cols, rows);
