@@ -6,6 +6,11 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "FiraCode:size=10:antialias=true:autohints=true";
+/* Spare fonts */
+static char *font2[] = {
+	"Noto Color Emoji:pixelsize=20:antialias=true:autohint=true",
+};
+
 static int borderpx = 2;
 
 /*
@@ -156,10 +161,10 @@ static const ColorScheme schemes[] = {
 	  [256]="#ffffec", "#424242"}, 15, 0, 256, 257},
 
 	// acme light
-	{{"#424242", "#b8261e", "#3e8630", "#7f8f29",
-	  "#2a8dc5", "#8888c7", "#6aa7a8", "#999957",
-	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
-	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
+	{{"#424242", "#b94342", "#397a35", "#85660b",
+	  "#0082c3", "#7a7ac5", "#489e9e", "#999957",
+	  "#eeeea7", "#fa9d9d", "#7fc97a", "#afa78d",
+	  "#8ed9fb", "#cacaf9", "#98ecec", "#ffffec",
 	  [256]="#424242", "#ffffec"}, 0, 15, 256, 257},
 
 };
