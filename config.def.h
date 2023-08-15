@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "FiraCode:size=12:antialias=true:autohints=true";
+static char *font = "FiraCode:size=10:antialias=true:autohints=true";
 static int borderpx = 2;
 
 /*
@@ -150,7 +150,7 @@ static const ColorScheme schemes[] = {
 
 	// Gruvbox dark
 	{{"#282828", "#cc241d", "#98971a", "#d79921",
-	  "#458588", "#b16286", "#689d6a", "#a89984",
+	  "t458588", "#b16286", "#689d6a", "#a89984",
 	  "#928374", "#fb4934", "#b8bb26", "#fabd2f",
 	  "#83a598", "#d3869b", "#8ec07c", "#ebdbb2",
 	  [256]="#ebdbb2", "#555555"}, 15, 0, 256, 257},
@@ -168,7 +168,7 @@ static const char * const * colorname;
 int colorscheme = 0;
 static const int autotimetheme = 1; /* select theme based on hour of day */
 static const int daystart = 7;      /* set first hour of day & night */
-static const int nightstart = 18;
+static const int nightstart = 17;
 static const int darkmode = 2;
 static const int lightmode = 3;
 
