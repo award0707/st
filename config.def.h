@@ -153,12 +153,12 @@ static const ColorScheme schemes[] = {
 	  "#657b83", "#6c71c4", "#586e75", "#002b36",
 	  [256]="#586e75", "#002b36"}, 12, 8, 256, 257},
 
-	// acme dark
-	{{"#1a1a1a", "#b8261e", "#3e8630", "#7f8f29",
+	// blue
+	{{"#002451", "#b8261e", "#3e8630", "#7f8f29",
 	  "#2a8dc5", "#8888c7", "#6aa7a8", "#999957",
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
-	  [256]="#ffffec", "#424242"}, 15, 0, 256, 257},
+	  [256]="#ffffec", "#002451"}, 15, 0, 256, 257},
 
 	// acme light
 	{{"#424242", "#b8261e", "#3e8630", "#7f8f29",
@@ -166,23 +166,15 @@ static const ColorScheme schemes[] = {
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
 	  [256]="#424242", "#ffffec"}, 0, 15, 256, 257},
-
-	// acme light
-//	{{"#424242", "#b94342", "#397a35", "#85660b",
-//	  "#0082c3", "#7a7ac5", "#489e9e", "#999957",
-//	  "#eeeea7", "#fa9d9d", "#7fc97a", "#afa78d",
-//	  "#8ed9fb", "#cacaf9", "#98ecec", "#ffffec",
-//	  [256]="#424242", "#ffffec"}, 0, 15, 256, 257},
-
 };
 
 static const char * const * colorname;
-int colorscheme = 0;
-static const int autotimetheme = 1; /* select theme based on hour of day */
-static const int daystart = 7;      /* set first hour of day & night */
-static const int nightstart = 17;
-static const int darkmode = 2;
-static const int lightmode = 3;
+static int colorscheme = 0;
+static int autotimetheme = 1; /* select theme based on hour of day */
+static int daystart = 7;      /* set first hour of day & night */
+static int nightstart = 17;
+static int darkmode = 2;
+static int lightmode = 3;
 
 /*
  * Default colors (colorname index)
@@ -235,6 +227,29 @@ static unsigned int defaultattr = 11;
  * modifier, set to 0 to not use it.
  */
 static uint forcemousemod = ShiftMask;
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "font",          STRING,  &font },
+		{ "termname",      STRING,  &termname },
+		{ "shell",         STRING,  &shell },
+		{ "minlatency",    INTEGER, &minlatency },
+		{ "maxlatency",    INTEGER, &maxlatency },
+		{ "blinktimeout",  INTEGER, &blinktimeout },
+		{ "bellvolume",    INTEGER, &bellvolume },
+		{ "tabspaces",     INTEGER, &tabspaces },
+		{ "borderpx",      INTEGER, &borderpx },
+		{ "cwscale",       FLOAT,   &cwscale },
+		{ "chscale",       FLOAT,   &chscale },
+		{ "colorscheme",   INTEGER, &colorscheme },
+		{ "darkmode",      INTEGER, &darkmode },
+		{ "lightmode",     INTEGER, &lightmode },
+		{ "daystart",      INTEGER, &daystart },
+		{ "nightstart",    INTEGER, &nightstart },
+		{ "autotimetheme", INTEGER, &autotimetheme },
+};
 
 /*
  * Internal mouse shortcuts.
