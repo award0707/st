@@ -118,11 +118,11 @@ static const ColorScheme schemes[] = {
 	  "#5c5cff", "magenta", "cyan", "white",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// Alacritty (dark)
-	{{"#1d1f21", "#cc6666", "#b5bd68", "#f0c674",
-	  "#81a2be", "#b294bb", "#8abeb7", "#c5c8c6",
-	  "#666666", "#d54e53", "#b9ca4a", "#e7c547",
-	  "#7aa6da", "#c397d8", "#70c0b1", "#eaeaea",
+	// Candle-dark (custom)
+	{{"#0d0d0d", "#cc6666", "#b5bd68", "#f0c674",
+	  "#81a2be", "#b294bb", "#8abeb7", "#9c9c9c",
+	  "#505050", "#d54e53", "#b9ca4a", "#e7c547",
+	  "#7aa6da", "#c397d8", "#70c0b1", "#f2f2f2",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
 	// One Half dark
