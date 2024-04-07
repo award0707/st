@@ -130,14 +130,14 @@ static const ColorScheme schemes[] = {
 	  "#9ccfd8", "#c4a7e7", "#ebbcca", "#e0def4",
 	  "#6e6a86", "#eb6f92", "#31748f", "#f6c177",
 	  "#9ccfd8", "#c4a7e7", "#ebbcca", "#e0def4",
-	  [256]="#524f67", "#21202e"}, 7, 0, 256, 257},
+	  [256]="#e0def4", "#524f67"}, 7, 0, 256, 257},
 
 	// Rosé Pine Dawn
 	{{"#f2e9e1", "#b4637a", "#286983", "#ea9d34",
 	  "#56949f", "#907aa9", "#d7827e", "#575279",
 	  "#9893a5", "#b4637a", "#286983", "#ea9d34",
 	  "#56949f", "#907aa9", "#d7827e", "#575279",
-	  [256]="#cecacd", "#f4ede8"}, 7, 0, 256, 257},
+	  [256]="#575279", "#cecacd"}, 7, 0, 256, 257},
 
 	// Solarized dark
 	{{"#073642", "#dc322f", "#859900", "#b58900",
@@ -216,11 +216,9 @@ static unsigned int cols = 80;
 static unsigned int rows = 24;
 
 /*
- * Default colour and shape of the mouse cursor
+ * Default shape of the mouse cursor
  */
-static unsigned int mouseshape = XC_xterm;
-static unsigned int mousefg = 7;
-static unsigned int mousebg = 0;
+static char* mouseshape = "xterm";
 
 /*
  * Color used to display font attributes when fontconfig selected a font which
