@@ -32,3 +32,26 @@ Credits
 -------
 Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
 
+My changes
+----------
+If by some bizarre chance you happened upon this repo.
+Here are the patches I added:
+newterm
+delkey 
+centered anysize 
+newterm tmux
+scrollback 
+mousescrollback
+scrollback mouse altscreen (scrollback for specific programs)
+scroll reflow - very important. keeps text from being eliminated
+                if the window is resized (e.g., moved from master to stack)
+blinking cursor
+theme - alt0-9 change theme.
+scheme framework - ST can receive signals (e.g. SIGUSR1) to change
+                   theme. so, a theme change elsewhere can change the
+                   theme of all open ST clients
+themed cursor
+
+schemesel themes, in order:
+st, candle dark, rose pine, rose pine dawn, solarized dark,
+solarized light, tomorrow night blue, amcme, moonfly
