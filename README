@@ -46,11 +46,11 @@ scrollback mouse altscreen (scrollback for specific programs)
 scroll reflow - very important. keeps text from being eliminated
                 if the window is resized (e.g., moved from master to stack)
 blinking cursor
-theme - alt0-9 change theme.
-scheme framework - ST can receive signals (e.g. SIGUSR1) to change
-                   theme. so, a theme change elsewhere can change the
-                   theme of all open ST clients
 themed cursor
+colorschemes - alt0-9 change theme.
+
+my code: allow ST to accept signals (e.g. SIGUSR1) to change
+         theme at runtime.
 
 schemesel themes, in order:
 st, candle dark, rose pine, rose pine dawn, solarized dark,
