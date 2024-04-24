@@ -32,25 +32,23 @@ Credits
 -------
 Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
 
-My changes
-----------
-If by some bizarre chance you happened upon this repo.
-Here are the patches I added:
+Patched added
+------------------
 newterm
-delkey 
+delkey
 centered anysize 
 newterm tmux
 scrollback 
+scroll reflow
 mousescrollback
-scrollback mouse altscreen (scrollback for specific programs)
-scroll reflow - very important. keeps text from being eliminated
-                if the window is resized (e.g., moved from master to stack)
+scrollback mouse altscreen
 blinking cursor
 themed cursor
+bold is not bright (currently commented out)
 colorschemes - alt0-9 change theme.
 
-my code: allow ST to accept signals (e.g. SIGUSR1) to change
-         theme at runtime.
+my hacks:
+allow st to accepts signals (e.g. SIGUSR1) to change theme at runtime.
 
 schemesel themes, in order:
 st, candle dark, rose pine, rose pine dawn, solarized dark,
