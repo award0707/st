@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "FiraMonoNerdFont:size=8:antialias=true:autohints=true";
+static char *font = "JetBrainsMonoNL-Regular:size=8:antialias=true:autohints=true";
 /* Spare fonts */
 static char *font2[] = {
 	"SymbolsNerdFont:pixelsize=14:antialias=true:autohint=true",
@@ -174,6 +174,20 @@ static const ColorScheme schemes[] = {
 	  "#7c8f8f", "#ff5189", "#36c692", "#bfbf97",
 	  "#74b2ff", "#ae81ff", "#85dc85", "#e2637f",
 	  [256]="#282a36", "#f8f8f2"}, 257, 256, 7, 0},
+
+	// gruvbox dark
+	{{"#282828", "#cc241d", "#98971a", "#d79921",
+	  "#458588", "#b16286", "#689d6a", "#a89984",
+	  "#928374", "#fb4934", "#b8bb26", "#fabd2f",
+	  "#83a598", "#d3869b", "#8ec07c", "#ebdbb2",
+	  [256]="#ebdbb2", "#282828"}, 15, 0, 256, 257},
+
+	// gruvbox light
+	{{"#fbf1c7", "#cc241d", "#98971a", "#d79921",
+	  "#458588", "#b16286", "#689d6a", "#7c6f64",
+	  "#928374", "#9d0006", "#79740e", "#b57614",
+	  "#076678", "#8f3f71", "#427b58", "#3c3836",
+	  [256]="#3c3836", "#fbf1c7"}, 15, 0, 256, 257},
 };
 
 static const char * const * colorname;
