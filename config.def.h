@@ -99,6 +99,8 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+float alpha = 0.8;
+
 typedef struct {
 	const char* const colors[258]; /* terminal colors */
 	unsigned int fg;               /* foreground */
