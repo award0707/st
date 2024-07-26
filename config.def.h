@@ -5,10 +5,10 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMonoNL-Regular:size=8:antialias=true:autohints=true";
+static char *font = "Courier Prime Code:size=9:antialias=true:autohints=true";
 /* Spare fonts */
 static char *font2[] = {
-	"SymbolsNerdFont:pixelsize=14:antialias=true:autohint=true",
+	"Symbols Nerd Font:pixelsize=14:antialias=true:autohint=true",
 	"Noto Color Emoji:pixelsize=14:antialias=true:autohint=true",
 };
 
