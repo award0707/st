@@ -114,82 +114,89 @@ typedef struct {
  * foreground, background, cursor, reverse cursor
  */
 static const ColorScheme schemes[] = {
-	// st (dark)
+	// 0: st (dark)
 	{{"black", "red3", "green3", "yellow3",
 	  "blue2", "magenta3", "cyan3", "gray90",
 	  "gray50", "red", "green", "yellow",
 	  "#5c5cff", "magenta", "cyan", "white",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// Candle-dark (custom)
+	// 1: Candle-dark (custom)
 	{{"#0d0d0d", "#cc6666", "#b5bd68", "#f0c674",
 	  "#81a2be", "#b294bb", "#8abeb7", "#9c9c9c",
 	  "#505050", "#d54e53", "#b9ca4a", "#e7c547",
 	  "#7aa6da", "#c397d8", "#70c0b1", "#f2f2f2",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// Rosé Pine
+	// 2: Rosé Pine
 	{{"#26233a", "#eb6f92", "#31748f", "#f6c177",
 	  "#9ccfd8", "#c4a7e7", "#ebbcca", "#e0def4",
 	  "#6e6a86", "#eb6f92", "#31748f", "#f6c177",
 	  "#9ccfd8", "#c4a7e7", "#ebbcca", "#e0def4",
 	  [256]="#e0def4", "#524f67"}, 7, 0, 256, 257},
 
-	// Rosé Pine Dawn
+	// 3: Rosé Pine Dawn
 	{{"#f2e9e1", "#b4637a", "#286983", "#ea9d34",
 	  "#56949f", "#907aa9", "#d7827e", "#575279",
 	  "#9893a5", "#b4637a", "#286983", "#ea9d34",
 	  "#56949f", "#907aa9", "#d7827e", "#575279",
 	  [256]="#575279", "#cecacd"}, 7, 0, 256, 257},
 
-	// Solarized dark
+	// 4: Solarized dark
 	{{"#073642", "#dc322f", "#859900", "#b58900",
 	  "#268bd2", "#d33682", "#2aa198", "#eee8d5",
 	  "#002b36", "#cb4b16", "#586e75", "#657b83",
 	  "#839496", "#6c71c4", "#93a1a1", "#fdf6e3",
 	  [256]="#93a1a1", "#fdf6e3"}, 12, 8, 256, 257},
 
-	// Solarized light
+	// 5: Solarized light
 	{{"#eee8d5", "#dc322f", "#859900", "#b58900",
 	  "#268bd2", "#d33682", "#2aa198", "#073642",
 	  "#fdf6e3", "#cb4b16", "#93a1a1", "#839496",
 	  "#657b83", "#6c71c4", "#586e75", "#002b36",
 	  [256]="#586e75", "#002b36"}, 12, 8, 256, 257},
 
-	// blue
+	// 6: blue
 	{{"#002451", "#b8261e", "#d1f1a9", "#7f8f29",
 	  "#bbdaff", "#8888c7", "#6aa7a8", "#999957",
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
 	  [256]="#ffffec", "#002451"}, 15, 0, 256, 257},
 
-	// acme light
+	// 7: acme light
 	{{"#424242", "#b8261e", "#3e8630", "#7f8f29",
 	  "#2a8dc5", "#8888c7", "#6aa7a8", "#999957",
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
 	  [256]="#424242", "#ffffec"}, 0, 15, 256, 257},
 
-	// moonfly
+	// 8: moonfly
 	{{"#323437", "#ff5454", "#8cc85f", "#e3c78a",
 	  "#80a0ff", "#d183e8", "#79dac8", "#a1aab8",
 	  "#7c8f8f", "#ff5189", "#36c692", "#bfbf97",
 	  "#74b2ff", "#ae81ff", "#85dc85", "#e2637f",
 	  [256]="#282a36", "#f8f8f2"}, 257, 256, 7, 0},
 
-	// gruvbox dark
+	// 9: gruvbox dark
 	{{"#282828", "#cc241d", "#98971a", "#d79921",
 	  "#458588", "#b16286", "#689d6a", "#a89984",
 	  "#928374", "#fb4934", "#b8bb26", "#fabd2f",
 	  "#83a598", "#d3869b", "#8ec07c", "#ebdbb2",
 	  [256]="#ebdbb2", "#282828"}, 15, 0, 256, 257},
 
-	// gruvbox light
+	// 10: gruvbox light
 	{{"#fbf1c7", "#cc241d", "#98971a", "#d79921",
 	  "#458588", "#b16286", "#689d6a", "#7c6f64",
 	  "#928374", "#9d0006", "#79740e", "#b57614",
 	  "#076678", "#8f3f71", "#427b58", "#3c3836",
 	  [256]="#3c3836", "#fbf1c7"}, 15, 0, 256, 257},
+
+	// 11: Equilibrium Dark
+	{{"#0c1118", "#f04339", "#7f8b00", "#bb8801",
+	  "#008dd1", "#6a7fd2", "#00948b", "#afaba2",
+	  "#7b776e", "#f04339", "#7f8b00", "#bb8801",
+	  "#008dd1", "#6a7fd2", "#00948b", "#e7e2d9",
+	  [256]="#e7e2d9", "#0c1118"}, 15, 0, 256, 257},
 };
 
 static const char * const * colorname;
