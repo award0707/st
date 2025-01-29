@@ -99,7 +99,7 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-float alpha = 0.9;
+float alpha = 1;
 
 typedef struct {
 	const char* const colors[258]; /* terminal colors */
@@ -190,6 +190,13 @@ static const ColorScheme schemes[] = {
 	  "#928374", "#9d0006", "#79740e", "#b57614",
 	  "#076678", "#8f3f71", "#427b58", "#3c3836",
 	  [256]="#3c3836", "#fbf1c7"}, 15, 0, 256, 257},
+
+	// st (light)
+	{{"white", "red3", "green3", "yellow3",
+	  "blue2", "magenta3", "cyan3", "gray50",
+	  "gray90", "red", "green", "yellow",
+	  "#5c5cff", "magenta", "cyan", "black",
+	  [256]="#cccccc", "#555555"}, 7, 0, 257, 256},
 };
 
 static const char * const * colorname;
