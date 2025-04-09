@@ -102,7 +102,7 @@ unsigned int tabspaces = 8;
 float alpha = 1;
 
 typedef struct {
-	const char* const colors[258]; /* terminal colors */
+	const char* const colors[260]; /* terminal colors */
 	unsigned int fg;               /* foreground */
 	unsigned int bg;               /* background */
 	unsigned int cs;               /* cursor */
@@ -163,7 +163,7 @@ static const ColorScheme schemes[] = {
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
 	  [256]="#ffffec", "#002451"}, 15, 0, 256, 257},
 
-	// 7: acme light
+	// 7: acme
 	{{"#424242", "#b8261e", "#3e8630", "#7f8f29",
 	  "#2a8dc5", "#8888c7", "#6aa7a8", "#999957",
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
@@ -191,12 +191,45 @@ static const ColorScheme schemes[] = {
 	  "#076678", "#8f3f71", "#427b58", "#3c3836",
 	  [256]="#3c3836", "#fbf1c7"}, 15, 0, 256, 257},
 
-	// 11: Equilibrium Dark
+	// 11: selenized black
+	{{"#252525", "#ed4a46", "#70b433", "#dbb32d",
+	  "#368aeb", "#eb6eb7", "#3fc5b7", "#777777",
+	  "#3b3b3b", "#ff5e56", "#83c746", "#efc541",
+	  "#4f9cfe", "#ff81ca", "#56d8c9", "#dedede",
+	  [256]="#dedede", "#252525", "#b9b9b9", "#181818"},
+	   258, 259, 256, 257},
+
+	// 12: selenized white
+	{{"#ebebeb", "#d6000c", "#1d9700", "#c49700",
+          "#0064e4", "#dd0f9d", "#00ad9c", "#878787",
+	  "#cdcdcd", "#bf0000", "#008400", "#af8500",
+	  "#0054cf", "#c7008b", "#009a8a", "#282828",
+	  [256]="#282828", "#ebebeb", "#474747", "#ffffff"},
+	  258, 259, 256, 257},
+
+	// 13: selenized dark
+	{{"#184956", "#fa5750", "#75b938", "#dbb32d",
+          "#4695f7", "#f275be", "#41c7b9", "#72898f",
+	  "#2d5b69", "#ff665c", "#84c747", "#ebc13d",
+	  "#58a3ff", "#ff84cd", "#53d6c7", "#cad8d9",
+	  [256]="#cad8d9", "#184956", "#adbcbc", "#103c48"},
+	  258, 259, 256, 257},
+	
+	// 14: selenized light
+	{{"#e9e4d0", "#d2212d", "#489100", "#ad8900",
+          "#0072d4", "#ca4898", "#009c8f", "#909995",
+	  "#cfcebe", "#cc1729", "#428b00", "#a78300",
+	  "#006dce", "#c44392", "#00978a", "#3a4d53",
+	  [256]="#3a4d53", "#e9e4d0", "#53676d", "#fbf3db"},
+	  258, 259, 256, 257},
+
+	// 15: Equilibrium (dark)
 	{{"#0c1118", "#f04339", "#7f8b00", "#bb8801",
 	  "#008dd1", "#6a7fd2", "#00948b", "#afaba2",
 	  "#7b776e", "#f04339", "#7f8b00", "#bb8801",
 	  "#008dd1", "#6a7fd2", "#00948b", "#e7e2d9",
-	  [256]="#e7e2d9", "#0c1118"}, 15, 0, 256, 257},
+	  [256]="#e7e2d9", "#0c1118", "#e7e2d9", "#0c1118"},
+	  258, 259, 256, 257},
 };
 
 static const char * const * colorname;
@@ -320,14 +353,14 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_Return,      fullscreen,     {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
 	{ MODKEY,               XK_1,           selectscheme,   {.i =  0} },
-	{ MODKEY,               XK_2,           selectscheme,   {.i =  1} },
-	{ MODKEY,               XK_3,           selectscheme,   {.i =  2} },
-	{ MODKEY,               XK_4,           selectscheme,   {.i =  3} },
-	{ MODKEY,               XK_5,           selectscheme,   {.i =  4} },
-	{ MODKEY,               XK_6,           selectscheme,   {.i =  5} },
-	{ MODKEY,               XK_7,           selectscheme,   {.i =  6} },
-	{ MODKEY,               XK_8,           selectscheme,   {.i =  7} },
-	{ MODKEY,               XK_9,           selectscheme,   {.i =  8} },
+	/* { MODKEY,               XK_2,           selectscheme,   {.i =  1} }, */
+	/* { MODKEY,               XK_3,           selectscheme,   {.i =  2} }, */
+	/* { MODKEY,               XK_4,           selectscheme,   {.i =  3} }, */
+	/* { MODKEY,               XK_5,           selectscheme,   {.i =  4} }, */
+	/* { MODKEY,               XK_6,           selectscheme,   {.i =  5} }, */
+	/* { MODKEY,               XK_7,           selectscheme,   {.i =  6} }, */
+	/* { MODKEY,               XK_8,           selectscheme,   {.i =  7} }, */
+	/* { MODKEY,               XK_9,           selectscheme,   {.i =  8} }, */
 	{ MODKEY,               XK_0,           nextscheme,     {.i = +1} },
 	{ MODKEY|ControlMask,   XK_0,           nextscheme,     {.i = -1} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },

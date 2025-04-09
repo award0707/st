@@ -835,8 +835,14 @@ xloadcolor(int i, const char *name, Color *ncolor)
 			}
 			return XftColorAllocValue(xw.dpy, xw.vis,
 			                          xw.cmap, &color, ncolor);
-		} else
-			name = colorname[i];
+		} else {
+			if (i == 258 && !colorname[i])
+				name = colorname[defaultfg];
+			else if (i == 259 && !colorname[i])
+				name = colorname[defaultbg];
+			else
+				name = colorname[i];
+		}
 	}
 
 	return XftColorAllocName(xw.dpy, xw.vis, xw.cmap, name, ncolor);
@@ -853,7 +859,7 @@ xloadcols(void)
 		for (cp = dc.col; cp < &dc.col[dc.collen]; ++cp)
 			XftColorFree(xw.dpy, xw.vis, xw.cmap, cp);
 	} else {
-		dc.collen = 258;
+		dc.collen = 260;
 		dc.col = xmalloc(dc.collen * sizeof(Color));
 	}
 
