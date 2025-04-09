@@ -228,8 +228,8 @@ static const ColorScheme schemes[] = {
 	  "#008dd1", "#6a7fd2", "#00948b", "#afaba2",
 	  "#7b776e", "#f04339", "#7f8b00", "#bb8801",
 	  "#008dd1", "#6a7fd2", "#00948b", "#e7e2d9",
-	  [256]="#e7e2d9", "#0c1118", "#e7e2d9", "#0c1118"},
-	  258, 259, 256, 257},
+	  [256]="#e7e2d9", "#0c1118"},
+	  15, 0, 256, 257},
 };
 
 static const char * const * colorname;
