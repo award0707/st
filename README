@@ -32,8 +32,10 @@ Credits
 -------
 Based on Aurélien APTEL <aurelien dot aptel at gmail dot com> bt source code.
 
-Patched added
-------------------
+My changes
+----------
+If by some bizarre chance you happened upon this repo, I added these patches:
+
 newterm
 delkey
 centered anysize 
@@ -44,12 +46,26 @@ mousescrollback
 scrollback mouse altscreen
 blinking cursor
 themed cursor
-bold is not bright (currently commented out)
-colorschemes - alt0-9 change theme.
+xresources
+colorschemes
 
-my hacks:
-allow st to accepts signals (e.g. SIGUSR1) to change theme at runtime.
+Hacks:
+- xresources
+  * colorscheme: the theme number of startup colorscheme
+  * lightmode, darkmode: theme number of colorscheme for dark / light mode
+  * daystart, nightstart: hours for st to start in the dark or light mode
+  * autotimetheme: boolean (0 or 1) to enable auto dark/light mode
+  = In theory the signal handler could trigger a time check
+  = I stopped caring about auto dark/light mode.  I work in many different
+    locations now, so ambient light conditions matter more than time of day.
 
-schemesel themes, in order:
-st, candle dark, rose pine, rose pine dawn, solarized dark,
-solarized light, tomorrow night blue, acme, moonfly
+- colorschemes
+  * Added signal handling (SIGUSR1) to change theme at runtime
+  * Added optional fg/bg colors (color array indices 258 and 259)
+
+schemesel themes:
+0: st default, 1: candle dark, 2: rose pine, 3: rose pine dawn
+4: solarized dark, 5: solarized light, 6: tomorrow night blue, 7: acme,
+8: moonfly, 9: gruvbox dark, 10: gruvbox light,
+11: selenized black, 12: selenized white,
+13: selenized dark, 14: selenized light, 15: equilibrium

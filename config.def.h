@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "FiraMonoNerdFont:size=8:antialias=true:autohints=true";
+static char *font = "JetBrainsMonoNL-Regular:size=8:antialias=true:autohints=true";
 /* Spare fonts */
 static char *font2[] = {
 	"SymbolsNerdFont:pixelsize=14:antialias=true:autohint=true",
@@ -99,8 +99,10 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
+float alpha = 1;
+
 typedef struct {
-	const char* const colors[258]; /* terminal colors */
+	const char* const colors[260]; /* terminal colors */
 	unsigned int fg;               /* foreground */
 	unsigned int bg;               /* background */
 	unsigned int cs;               /* cursor */
@@ -112,68 +114,122 @@ typedef struct {
  * foreground, background, cursor, reverse cursor
  */
 static const ColorScheme schemes[] = {
-	// st (dark)
+	// 0: st (dark)
 	{{"black", "red3", "green3", "yellow3",
 	  "blue2", "magenta3", "cyan3", "gray90",
 	  "gray50", "red", "green", "yellow",
 	  "#5c5cff", "magenta", "cyan", "white",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// Candle-dark (custom)
+	// 1: Candle-dark (custom)
 	{{"#0d0d0d", "#cc6666", "#b5bd68", "#f0c674",
 	  "#81a2be", "#b294bb", "#8abeb7", "#9c9c9c",
 	  "#505050", "#d54e53", "#b9ca4a", "#e7c547",
 	  "#7aa6da", "#c397d8", "#70c0b1", "#f2f2f2",
 	  [256]="#cccccc", "#555555"}, 7, 0, 256, 257},
 
-	// Rosé Pine
+	// 2: Rosé Pine
 	{{"#26233a", "#eb6f92", "#31748f", "#f6c177",
 	  "#9ccfd8", "#c4a7e7", "#ebbcca", "#e0def4",
 	  "#6e6a86", "#eb6f92", "#31748f", "#f6c177",
 	  "#9ccfd8", "#c4a7e7", "#ebbcca", "#e0def4",
 	  [256]="#e0def4", "#524f67"}, 7, 0, 256, 257},
 
-	// Rosé Pine Dawn
+	// 3: Rosé Pine Dawn
 	{{"#f2e9e1", "#b4637a", "#286983", "#ea9d34",
 	  "#56949f", "#907aa9", "#d7827e", "#575279",
 	  "#9893a5", "#b4637a", "#286983", "#ea9d34",
 	  "#56949f", "#907aa9", "#d7827e", "#575279",
 	  [256]="#575279", "#cecacd"}, 7, 0, 256, 257},
 
-	// Solarized dark
+	// 4: Solarized dark
 	{{"#073642", "#dc322f", "#859900", "#b58900",
 	  "#268bd2", "#d33682", "#2aa198", "#eee8d5",
 	  "#002b36", "#cb4b16", "#586e75", "#657b83",
 	  "#839496", "#6c71c4", "#93a1a1", "#fdf6e3",
 	  [256]="#93a1a1", "#fdf6e3"}, 12, 8, 256, 257},
 
-	// Solarized light
+	// 5: Solarized light
 	{{"#eee8d5", "#dc322f", "#859900", "#b58900",
 	  "#268bd2", "#d33682", "#2aa198", "#073642",
 	  "#fdf6e3", "#cb4b16", "#93a1a1", "#839496",
 	  "#657b83", "#6c71c4", "#586e75", "#002b36",
 	  [256]="#586e75", "#002b36"}, 12, 8, 256, 257},
 
-	// blue
+	// 6: blue
 	{{"#002451", "#b8261e", "#d1f1a9", "#7f8f29",
 	  "#bbdaff", "#8888c7", "#6aa7a8", "#999957",
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
 	  [256]="#ffffec", "#002451"}, 15, 0, 256, 257},
 
-	// acme light
+	// 7: acme
 	{{"#424242", "#b8261e", "#3e8630", "#7f8f29",
 	  "#2a8dc5", "#8888c7", "#6aa7a8", "#999957",
 	  "#eeeea7", "#f2acaa", "#98ce8f", "#b6b79c",
 	  "#a6dcf8", "#d0d1f7", "#b0eced", "#ffffec",
 	  [256]="#424242", "#ffffec"}, 0, 15, 256, 257},
 
-	// moonfly
+	// 8: moonfly
 	{{"#323437", "#ff5454", "#8cc85f", "#e3c78a",
 	  "#80a0ff", "#d183e8", "#79dac8", "#a1aab8",
 	  "#7c8f8f", "#ff5189", "#36c692", "#bfbf97",
 	  "#74b2ff", "#ae81ff", "#85dc85", "#e2637f",
 	  [256]="#282a36", "#f8f8f2"}, 257, 256, 7, 0},
+
+	// 9: gruvbox dark
+	{{"#282828", "#cc241d", "#98971a", "#d79921",
+	  "#458588", "#b16286", "#689d6a", "#a89984",
+	  "#928374", "#fb4934", "#b8bb26", "#fabd2f",
+	  "#83a598", "#d3869b", "#8ec07c", "#ebdbb2",
+	  [256]="#ebdbb2", "#282828"}, 15, 0, 256, 257},
+
+	// 10: gruvbox light
+	{{"#fbf1c7", "#cc241d", "#98971a", "#d79921",
+	  "#458588", "#b16286", "#689d6a", "#7c6f64",
+	  "#928374", "#9d0006", "#79740e", "#b57614",
+	  "#076678", "#8f3f71", "#427b58", "#3c3836",
+	  [256]="#3c3836", "#fbf1c7"}, 15, 0, 256, 257},
+
+	// 11: selenized black
+	{{"#252525", "#ed4a46", "#70b433", "#dbb32d",
+	  "#368aeb", "#eb6eb7", "#3fc5b7", "#777777",
+	  "#3b3b3b", "#ff5e56", "#83c746", "#efc541",
+	  "#4f9cfe", "#ff81ca", "#56d8c9", "#dedede",
+	  [256]="#dedede", "#252525", "#b9b9b9", "#181818"},
+	   258, 259, 256, 257},
+
+	// 12: selenized white
+	{{"#ebebeb", "#d6000c", "#1d9700", "#c49700",
+          "#0064e4", "#dd0f9d", "#00ad9c", "#878787",
+	  "#cdcdcd", "#bf0000", "#008400", "#af8500",
+	  "#0054cf", "#c7008b", "#009a8a", "#282828",
+	  [256]="#282828", "#ebebeb", "#474747", "#ffffff"},
+	  258, 259, 256, 257},
+
+	// 13: selenized dark
+	{{"#184956", "#fa5750", "#75b938", "#dbb32d",
+          "#4695f7", "#f275be", "#41c7b9", "#72898f",
+	  "#2d5b69", "#ff665c", "#84c747", "#ebc13d",
+	  "#58a3ff", "#ff84cd", "#53d6c7", "#cad8d9",
+	  [256]="#cad8d9", "#184956", "#adbcbc", "#103c48"},
+	  258, 259, 256, 257},
+	
+	// 14: selenized light
+	{{"#e9e4d0", "#d2212d", "#489100", "#ad8900",
+          "#0072d4", "#ca4898", "#009c8f", "#909995",
+	  "#cfcebe", "#cc1729", "#428b00", "#a78300",
+	  "#006dce", "#c44392", "#00978a", "#3a4d53",
+	  [256]="#3a4d53", "#e9e4d0", "#53676d", "#fbf3db"},
+	  258, 259, 256, 257},
+
+	// 15: Equilibrium (dark)
+	{{"#0c1118", "#f04339", "#7f8b00", "#bb8801",
+	  "#008dd1", "#6a7fd2", "#00948b", "#afaba2",
+	  "#7b776e", "#f04339", "#7f8b00", "#bb8801",
+	  "#008dd1", "#6a7fd2", "#00948b", "#e7e2d9",
+	  [256]="#e7e2d9", "#0c1118"},
+	  15, 0, 256, 257},
 };
 
 static const char * const * colorname;
@@ -297,14 +353,14 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,               XK_Return,      fullscreen,     {.i =  0} },
 	{ TERMMOD,              XK_Return,      newterm,        {.i =  0} },
 	{ MODKEY,               XK_1,           selectscheme,   {.i =  0} },
-	{ MODKEY,               XK_2,           selectscheme,   {.i =  1} },
-	{ MODKEY,               XK_3,           selectscheme,   {.i =  2} },
-	{ MODKEY,               XK_4,           selectscheme,   {.i =  3} },
-	{ MODKEY,               XK_5,           selectscheme,   {.i =  4} },
-	{ MODKEY,               XK_6,           selectscheme,   {.i =  5} },
-	{ MODKEY,               XK_7,           selectscheme,   {.i =  6} },
-	{ MODKEY,               XK_8,           selectscheme,   {.i =  7} },
-	{ MODKEY,               XK_9,           selectscheme,   {.i =  8} },
+	/* { MODKEY,               XK_2,           selectscheme,   {.i =  1} }, */
+	/* { MODKEY,               XK_3,           selectscheme,   {.i =  2} }, */
+	/* { MODKEY,               XK_4,           selectscheme,   {.i =  3} }, */
+	/* { MODKEY,               XK_5,           selectscheme,   {.i =  4} }, */
+	/* { MODKEY,               XK_6,           selectscheme,   {.i =  5} }, */
+	/* { MODKEY,               XK_7,           selectscheme,   {.i =  6} }, */
+	/* { MODKEY,               XK_8,           selectscheme,   {.i =  7} }, */
+	/* { MODKEY,               XK_9,           selectscheme,   {.i =  8} }, */
 	{ MODKEY,               XK_0,           nextscheme,     {.i = +1} },
 	{ MODKEY|ControlMask,   XK_0,           nextscheme,     {.i = -1} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
