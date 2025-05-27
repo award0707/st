@@ -2304,6 +2304,7 @@ updatescheme(void)
 		tupdatefgcolor(oldfg, defaultfg);
 	cresize(win.w, win.h);
 	redraw();
+//	ttywrite("\033[0", 3, 1);
 }
 
 void
