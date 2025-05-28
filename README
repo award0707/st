@@ -48,20 +48,7 @@ blinking cursor
 themed cursor
 xresources
 colorschemes
-
-Hacks:
-- xresources
-  * colorscheme: the theme number of startup colorscheme
-  * lightmode, darkmode: theme number of colorscheme for dark / light mode
-  * daystart, nightstart: hours for st to start in the dark or light mode
-  * autotimetheme: boolean (0 or 1) to enable auto dark/light mode
-  = In theory the signal handler could trigger a time check
-  = I stopped caring about auto dark/light mode.  I work in many different
-    locations now, so ambient light conditions matter more than time of day.
-
-- colorschemes
-  * Added signal handling (SIGUSR1) to change theme at runtime
-  * Added optional fg/bg colors (color array indices 258 and 259)
+alpha
 
 schemesel themes:
 0: st default, 1: candle dark, 2: rose pine, 3: rose pine dawn
@@ -69,3 +56,23 @@ schemesel themes:
 8: moonfly, 9: gruvbox dark, 10: gruvbox light,
 11: selenized black, 12: selenized white,
 13: selenized dark, 14: selenized light, 15: equilibrium
+
+Hacks:
+- xresources
+  * colorscheme: the theme number of startup colorscheme
+  = I stopped caring about auto dark/light mode. I work in many different
+    locations now. Ambient light conditions matter far more than time of day.
+    Nonetheless, these parameters remain (unused):
+      * lightmode, darkmode: theme number of colorscheme for dark / light mode
+      * daystart, nightstart: hour of day to start in the dark or light mode
+      * autotimetheme: boolean (0 or 1) to enable auto dark/light mode
+
+- alpha
+  * allow toggling transparency (ctrl-shift-a)
+  * default transparency value and state in config.def.h
+  * can override the default with the -A command line parameter 
+
+- colorschemes
+  * Added signal handling (SIGUSR1) to change theme at runtime
+  * Added optional fg/bg colors (color array indices 258 and 259)
+
