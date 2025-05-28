@@ -14,6 +14,9 @@ static char *font2[] = {
 
 static int borderpx = 2;
 
+float alpha = 0.9;
+int   alpha_en = 1;
+
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -98,8 +101,6 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
-
-float alpha = 1;
 
 typedef struct {
 	const char* const colors[260]; /* terminal colors */
@@ -363,6 +364,7 @@ static Shortcut shortcuts[] = {
 	/* { MODKEY,               XK_9,           selectscheme,   {.i =  8} }, */
 	{ MODKEY,               XK_0,           nextscheme,     {.i = +1} },
 	{ MODKEY|ControlMask,   XK_0,           nextscheme,     {.i = -1} },
+	{ TERMMOD,              XK_A,           togglealpha,    {.i = 0}  },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };

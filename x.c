@@ -77,6 +77,7 @@ static void zoomreset(const Arg *);
 static void ttysend(const Arg *);
 static void nextscheme(const Arg *);
 static void selectscheme(const Arg *);
+static void togglealpha(const Arg *);
 
 /* config.h for applying patches and the configuration. */
 #include "config.h"
@@ -852,6 +853,7 @@ void
 xloadcols(void)
 {
 	int i;
+	float a;
 	static int loaded;
 	Color *cp;
 
@@ -872,14 +874,13 @@ xloadcols(void)
 		}
 
 	/* set alpha value of bg color */
-	if (opt_alpha)
-		alpha = strtof(opt_alpha, NULL);
-	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * alpha);
-	dc.col[defaultbg].color.red = (unsigned short)(dc.col[defaultbg].color.red * alpha) & 0xff00;
-	dc.col[defaultbg].color.blue = (unsigned short)(dc.col[defaultbg].color.blue * alpha) & 0xff00;
-	dc.col[defaultbg].color.green = (unsigned short)(dc.col[defaultbg].color.green * alpha) & 0xff00;
+	a = alpha_en ? alpha : 1;
+	dc.col[defaultbg].color.alpha = (unsigned short)(0xffff * a);
+	dc.col[defaultbg].color.red = (unsigned short)(dc.col[defaultbg].color.red * a) & 0xff00;
+	dc.col[defaultbg].color.blue = (unsigned short)(dc.col[defaultbg].color.blue * a) & 0xff00;
+	dc.col[defaultbg].color.green = (unsigned short)(dc.col[defaultbg].color.green * a) & 0xff00;
 	dc.col[defaultbg].pixel &= 0x00FFFFFF;
-	dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
+	dc.col[defaultbg].pixel |= (unsigned char)(0xff * a) << 24;
 	loaded = 1;
 }
 
@@ -2286,6 +2287,15 @@ selectscheme(const Arg *arg)
 }
 
 void
+togglealpha(const Arg *arg)
+{
+	alpha_en = !alpha_en;
+	xloadcols();
+	cresize(win.w, win.h);
+	redraw();
+}
+
+void
 updatescheme(void)
 {
 	int oldbg, oldfg;
@@ -2396,6 +2406,8 @@ run:
 	defaultfg = schemes[colorscheme].fg;
 	defaultcs = schemes[colorscheme].cs;
 	defaultrcs = schemes[colorscheme].rcs;
+
+	if (opt_alpha) alpha = strtof(opt_alpha, NULL);
 
 	if (argc > 0) /* eat all remaining arguments */
 		opt_cmd = argv;
